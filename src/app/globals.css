@@ -1,26 +1,54 @@
+/* src/app/globals.css */
+
+/* ★ v4 では @tailwind じゃなくて @import "tailwindcss" を使う */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ページ全体のふわっとフェードイン */
+body {
+  animation: body-fade-in 0.7s ease-out both;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ふわっと揺れる光の粒 */
+@keyframes dw-float-blob {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(12px, -20px, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.dw-floating-blob {
+  animation: dw-float-blob 18s ease-in-out infinite alternate;
+}
+.dw-floating-blob--delay {
+  animation-delay: -8s;
+}
+
+/* Hero 背景で使う、やわらかく動く光の粒 */
+.floating-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(28px);
+  opacity: 0.65;
+  animation: float-blob 18s ease-in-out infinite alternate;
+}
+
+.floating-blob--delay {
+  animation-delay: -9s;
+}
+
+@keyframes float-blob {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(12px, -24px, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-16px, 18px, 0) scale(1.02);
+  }
 }
